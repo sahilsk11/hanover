@@ -44,14 +44,14 @@ export class BamlSyncClient {
 
   
   ExplainTopic(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): string {
     try {
     const raw = this.runtime.callFunctionSync(
       "ExplainTopic",
       {
-        "userInput": userInput
+        "userInput": userInput,"chatHistory": chatHistory
       },
       this.ctx_manager.cloneContext(),
       __baml_options__?.tb?.__tb(),
@@ -69,14 +69,14 @@ export class BamlSyncClient {
   }
   
   GenerateGoogleQueries(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): string[] {
     try {
     const raw = this.runtime.callFunctionSync(
       "GenerateGoogleQueries",
       {
-        "userInput": userInput
+        "userInput": userInput,"chatHistory": chatHistory
       },
       this.ctx_manager.cloneContext(),
       __baml_options__?.tb?.__tb(),

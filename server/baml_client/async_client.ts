@@ -44,14 +44,14 @@ export class BamlAsyncClient {
 
   
   async ExplainTopic(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): Promise<string> {
     try {
       const raw = await this.runtime.callFunction(
         "ExplainTopic",
         {
-          "userInput": userInput
+          "userInput": userInput,"chatHistory": chatHistory
         },
         this.ctx_manager.cloneContext(),
         __baml_options__?.tb?.__tb(),
@@ -69,14 +69,14 @@ export class BamlAsyncClient {
   }
   
   async GenerateGoogleQueries(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): Promise<string[]> {
     try {
       const raw = await this.runtime.callFunction(
         "GenerateGoogleQueries",
         {
-          "userInput": userInput
+          "userInput": userInput,"chatHistory": chatHistory
         },
         this.ctx_manager.cloneContext(),
         __baml_options__?.tb?.__tb(),
@@ -100,14 +100,14 @@ class BamlStreamClient {
 
   
   ExplainTopic(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): BamlStream<RecursivePartialNull<string>, string> {
     try {
       const raw = this.runtime.streamFunction(
         "ExplainTopic",
         {
-          "userInput": userInput
+          "userInput": userInput,"chatHistory": chatHistory
         },
         undefined,
         this.ctx_manager.cloneContext(),
@@ -133,14 +133,14 @@ class BamlStreamClient {
   }
   
   GenerateGoogleQueries(
-      userInput: string,
+      userInput: string,chatHistory: string,
       __baml_options__?: { tb?: TypeBuilder, clientRegistry?: ClientRegistry }
   ): BamlStream<RecursivePartialNull<string[]>, string[]> {
     try {
       const raw = this.runtime.streamFunction(
         "GenerateGoogleQueries",
         {
-          "userInput": userInput
+          "userInput": userInput,"chatHistory": chatHistory
         },
         undefined,
         this.ctx_manager.cloneContext(),

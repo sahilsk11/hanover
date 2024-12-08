@@ -16,14 +16,16 @@ app.use(express.json());
 // Endpoints
 app.post('/generateGoogleSearches', async (req, res) => {
     try {
-        const { query } = req.body;
+        const { query, chatHistory } = req.body;
+
+        const chatHistoryStr = JSON.stringify(chatHistory);
         
         if (!query) {
             return res.status(400).json({ error: 'Query parameter is required' });
         }
 
         // TODO: Implement your Google searches generation logic here
-        const searches = await b.GenerateGoogleQueries(query);
+        const searches = await b.GenerateGoogleQueries(query, chatHistoryStr);
 
         res.json({ searches });
     } catch (error) {
@@ -34,14 +36,16 @@ app.post('/generateGoogleSearches', async (req, res) => {
 
 app.post('/explainTopic', async (req, res) => {
     try {
-        const { query } = req.body;
+        const { query, chatHistory } = req.body;
         
         if (!query) {
             return res.status(400).json({ error: 'Query parameter is required' });
         }
 
+        const chatHistoryStr = JSON.stringify(chatHistory);
+
         // TODO: Implement your topic explanation logic here
-        const explanation = await b.ExplainTopic(query);
+        const explanation = await b.ExplainTopic(query, chatHistoryStr);
 
         res.json({ explanation });
     } catch (error) {

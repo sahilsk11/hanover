@@ -1,14 +1,16 @@
 // import { b } from "@/baml_client";
 
+import { Chat } from "@/App";
 
-export default async function generateGoogleSearches(userInput: string): Promise<string[]> {
+
+export default async function generateGoogleSearches(userInput: string, chatHistory: Chat[]): Promise<string[]> {
     try {
         const response = await fetch('http://localhost:3000/generateGoogleSearches', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ query: userInput }),
+            body: JSON.stringify({ query: userInput, chatHistory }),
         });
 
         if (!response.ok) {
