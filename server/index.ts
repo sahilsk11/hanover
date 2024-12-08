@@ -41,7 +41,7 @@ app.post('/explainTopic', async (req, res) => {
         }
 
         // TODO: Implement your topic explanation logic here
-        const explanation = `Here is an explanation about ${query}`;
+        const explanation = await b.ExplainTopic(query);
 
         res.json({ explanation });
     } catch (error) {
