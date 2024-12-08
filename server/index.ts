@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
+import {b} from "./baml_client";
 
 // Initialize environment variables
-dotenv.config();
+config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,7 +23,7 @@ app.post('/generateGoogleSearches', async (req, res) => {
         }
 
         // TODO: Implement your Google searches generation logic here
-        const searches = [`How to ${query}`, `What is ${query}`, `Best ${query} examples`];
+        const searches = await b.GenerateGoogleQueries(query);
 
         res.json({ searches });
     } catch (error) {
